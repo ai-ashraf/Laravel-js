@@ -5,7 +5,11 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Products</h1>
     </div>
-
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+@endif
 
     <div class="card">
         <form action="" method="get" class="card-header">
@@ -51,11 +55,11 @@
                     </thead>
 
                     <tbody>
-
+                    @foreach($products as $product)
                     <tr>
-                        <td>1</td>
-                        <td>T-Shirt <br> Created at : 25-Aug-2020</td>
-                        <td>Quality product in low cost</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $product->title }}<br> Created at : {{ $product->created_at }}</td>
+                        <td>{{ $product->description }}</td>
                         <td>
                             <dl class="row mb-0" style="height: 80px; overflow: hidden" id="variant">
 
@@ -77,7 +81,7 @@
                             </div>
                         </td>
                     </tr>
-
+                    @endforeach
                     </tbody>
 
                 </table>
